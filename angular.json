@@ -5,5 +5,132 @@
     "packageManager": "npm"
   },
   "newProjectRoot": "projects",
-  "projects": {}
+  "projects": {
+    "grocery-tracker-fe": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "inlineTemplate": true,
+          "inlineStyle": true,
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/grocery-tracker-fe",
+      "sourceRoot": "projects/grocery-tracker-fe/src",
+      "prefix": "gt",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/grocery-tracker-fe",
+            "index": "projects/grocery-tracker-fe/src/index.html",
+            "main": "projects/grocery-tracker-fe/src/main.ts",
+            "polyfills": "projects/grocery-tracker-fe/src/polyfills.ts",
+            "tsConfig": "projects/grocery-tracker-fe/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/grocery-tracker-fe/src/favicon.ico",
+              "projects/grocery-tracker-fe/src/assets"
+            ],
+            "styles": [
+              "projects/grocery-tracker-fe/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/grocery-tracker-fe/src/environments/environment.ts",
+                  "with": "projects/grocery-tracker-fe/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "grocery-tracker-fe:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "grocery-tracker-fe:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "grocery-tracker-fe:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/grocery-tracker-fe/src/test.ts",
+            "polyfills": "projects/grocery-tracker-fe/src/polyfills.ts",
+            "tsConfig": "projects/grocery-tracker-fe/tsconfig.spec.json",
+            "karmaConfig": "projects/grocery-tracker-fe/karma.conf.js",
+            "assets": [
+              "projects/grocery-tracker-fe/src/favicon.ico",
+              "projects/grocery-tracker-fe/src/assets"
+            ],
+            "styles": [
+              "projects/grocery-tracker-fe/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/grocery-tracker-fe/tsconfig.app.json",
+              "projects/grocery-tracker-fe/tsconfig.spec.json",
+              "projects/grocery-tracker-fe/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/grocery-tracker-fe/e2e/protractor.conf.js",
+            "devServerTarget": "grocery-tracker-fe:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "grocery-tracker-fe:serve:production"
+            }
+          }
+        }
+      }
+    }},
+  "defaultProject": "grocery-tracker-fe"
 }
