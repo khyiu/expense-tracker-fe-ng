@@ -6,7 +6,7 @@ export const environment = {
     loginFlowType: 'code',
     clientId: '4uq3crrcu59cbc408a4f7acijl',
     clientSecret: 'lo6vt6svaq6vejgk0upuockvaqnf23k755i3f10j0dpfdiioboo',
-    loginRedirectUri: 'http://localhost:4200/purchases',
+    loginRedirectUri: 'https://khyiu.github.io/grocery-tracker-fe-ng/purchases',
     tokenEndpoint:
       'https://grocery-tracker-back-8.auth.eu-central-1.amazoncognito.com/oauth2/token',
   },
