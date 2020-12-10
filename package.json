@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build-prod": "ng build --prod --output-path docs --base-href /grocery-tracker-fe-ng/",
     "test": "ng test",
     "test-no-watch": "ng test --watch=false",
     "lint": "ng lint",
