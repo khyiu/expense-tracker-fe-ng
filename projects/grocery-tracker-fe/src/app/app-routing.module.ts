@@ -10,11 +10,18 @@ const routes: Routes = [
     redirectTo: 'purchases',
   },
 
+  // todo kyiu: revert after test
+  // {
+  //   path: 'purchases',
+  //   pathMatch: 'full',
+  //   component: PurchaseListComponent,
+  //   canActivate: [SecurityGuard],
+  // },
+
   {
     path: 'purchases',
     pathMatch: 'full',
     component: PurchaseListComponent,
-    canActivate: [SecurityGuard],
   },
 ];
 
