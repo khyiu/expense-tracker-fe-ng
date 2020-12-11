@@ -2,6 +2,9 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
 
+## Production server
+The application is deployed in Github page and accessible [here]()
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -40,3 +43,21 @@ The steps I went through:
    with a query param that contains the auth code.
 1. after redirection from Cognito login page, we end up in the CanActivate guard again, but this time, the security service extract the OAuth code, 
 calls the Cognito token endpoint to retrieve among others, the access token. This token will then be used to call back-end API methods.
+
+### Stage 2: deploy to cloud platform
+
+I was, initially thinking about deploying this Angular SPA in AWS but according to its official documentation, it does not support HTTPS. That's a problem since
+AWS Cognito only supports HTTPS URLs for login redirection. 
+AWS S3 document does explain that setting up an AWS Cloudfront instance in front of the S3 bucket will add support
+of HTTPS but for simplicity sake, and since I've wanted to give it a shot for a while, I've decided to use Github page. 
+
+The procedure to build and deploy an Angular application to Github page is straightforward and described in Angular documentation: 
+[Deploy to Github page](https://angular.io/guide/deployment#deploy-to-github-pages).
+
+To summarize:
+1. execute `ng build --prod --output-path docs --base-href /grocery-tracker-fe-ng/`
+1. create a copy of `index.html` and name it `404.html` (purpose is explained in the Angular documentation)
+1. commit and push those changes to the branch that is configured to be the input for Github Page
+
+
+In a further step, I'll try to integrate the deployment in a CI/CD process.
